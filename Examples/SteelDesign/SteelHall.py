@@ -7,7 +7,7 @@ dirName = os.path.dirname(__file__)
 print('basename:    ', baseName)
 print('dirname:     ', dirName)
 sys.path.append(dirName + r'/../..')
-
+                                                 
 from RFEM.enums import *
 from RFEM.initModel import Model, SetAddonStatus, insertSpaces, Calculate_all, client, closeModel
 from RFEM.BasicObjects.material import Material
@@ -35,16 +35,16 @@ if __name__ == '__main__':
     column_height = 4
     gable_height = 2
 
-    print('Give a integer as a number of frame!')
-    frame_number = int(input('Number of frames : '))
-    width = float(input('Frame width(in m) : '))
-    print('Frame length is the distance between the each frame!')
-    frame_length = float(input('Frame length(in m) : '))
-    console_height = float(input('Console height(in m) : '))
-    print('Column height msut be more than console height!')
-    column_height = float(input('Column height(in m) : '))
-    print('Gable height must be more than difference of column height and console height!')
-    gable_height = float(input('Gable Height(in m) : '))
+    print('请输入整数')
+    frame_number = int(input('门刚榀数: '))
+    width = float(input('跨度(in m) : '))
+    print('间距-两榀刚架之间的距离')
+    frame_length = float(input('间距(in m) : '))
+    console_height = float(input('吊车梁高度(in m) : '))
+    print('柱高度-必须大于吊车梁高度')
+    column_height = float(input('柱子高度(in m) : '))
+    print('山墙高度-必须大于柱高-吊车梁高')
+    gable_height = float(input('山墙高度(in m) : '))
     console_length = 0.3
 
     lst = None
@@ -113,11 +113,11 @@ if __name__ == '__main__':
         i, k = i+13, k+9
 
     bracingV1, bracingV2, bracingV3 = 'None', 'None', 'None'
-    bracingV = input('Would you like to include vertical bracing? (Y/N) : ')
+    bracingV = input('你想创建垂直斜撑么? (Y/N) : ')
     i = frame_number*8 + (frame_number-1)*5
     if bracingV.lower() == 'yes' or bracingV.lower() == 'y':
 
-        bracingV1 = input('Would you like to repeat a vertical bracing in every block? (Y/N): ')
+        bracingV1 = input('你想在每跨都布置斜撑么? (Y/N): ')
 
         if bracingV1.lower() == 'yes' or bracingV1.lower() == 'y':
             k = 1
@@ -129,7 +129,7 @@ if __name__ == '__main__':
                 i, k = i+4, k+9
 
         else:
-            bracingV2 = input('Would you like to repeat a vertical bracing only in the first and last block? (Y/N): ')
+            bracingV2 = input('你想只在第一跨和最后一跨布置斜撑么? (Y/N): ')
 
         if bracingV2.lower() == 'yes' or bracingV2.lower() == 'y':
             k = 1
@@ -142,7 +142,7 @@ if __name__ == '__main__':
                     i = i+4
                 k = k+9
         elif bracingV2.lower() == 'no' or bracingV2.lower() == 'n':
-            bracingV3 = input('Would you like to repeat a vertical bracing in even/odd blocks? (E/O/N): ')
+            bracingV3 = input('在奇数跨（O）还是偶数跨(E)布置斜撑? (E/O/N): ')
 
         if bracingV3.lower() == 'even' or bracingV3.lower() == 'e':
             k = 1
@@ -166,7 +166,7 @@ if __name__ == '__main__':
                     i = i + 4
                 k = k+9
 
-    bracingH = input('Would you like to include horizontal bracing? (Y/N) : ')
+    bracingH = input('你想创建水平斜撑么? (Y/N) : ')
     if bracingH.lower() == 'yes' or bracingH.lower() == 'y':
 
         if bracingV.lower() != 'yes' and bracingV.lower() != 'y':
