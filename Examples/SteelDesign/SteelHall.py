@@ -53,17 +53,17 @@ if __name__ == '__main__':
     if lst:
 
         if 'SteelHall' in lst[0]:
-            print('Closing old Model...!')
+            print('关闭旧模型...!')
             client.service.close_model(0, False)
-            print('Creating new model...!')
+            print('创建新模型...!')
             Model(True, 'SteelHall.rf6', delete_all= True)
 
         else:
-            print('Creating new model...!')
+            print('创建新模型...!')
             Model(True, 'SteelHall.rf6', delete_all= True)
 
     else:
-        print('Creating new model...!')
+        print('创建新模型...!')
         Model(True, 'SteelHall.rf6', delete_all= True)
 
     Model.clientModel.service.begin_modification()
